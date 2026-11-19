@@ -9,7 +9,8 @@ formulaire de contact est une démonstration et n'envoie rien.
 
 ## Contenu
 
-Tout le site tient dans `index.html` (images incluses) :
+`index.html` contient le HTML, les styles et le JavaScript. Les images sont
+dans `assets/`. Le panorama se charge à l’ouverture de la rubrique Boutique.
 
 - Accueil
 - Catalogue avec recherche, filtres et simulateur d'emprunt
@@ -20,5 +21,6 @@ Tout le site tient dans `index.html` (images incluses) :
 
 ## Mise en ligne
 
-Le site est statique : il suffit d'activer GitHub Pages sur la branche `main`
-(dossier racine), ou d'ouvrir `index.html` dans un navigateur.
+Le site statique se publie sur GitHub Pages depuis la racine de la branche
+`main`. Pour le consulter en local, ouvrez `index.html` dans un navigateur
+avec le dossier `assets/` au même emplacement.
