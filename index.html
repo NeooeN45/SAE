@@ -486,8 +486,9 @@ a.info{text-decoration:none;color:inherit;transition:transform .2s ease-out}
 .who:focus-visible{outline:0;transform:translateY(-8px) scale(1.05);z-index:2}
 @media (hover:hover){.who:hover{transform:translateY(-8px) scale(1.05);z-index:2}.who:hover span{opacity:1;translate:-50% 0}}
 @media (max-width:760px){.lineup{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x proximity;padding-inline:24px}.who{flex:0 0 118px;scroll-snap-align:center}.who:nth-child(n+3):nth-child(-n+6){flex-basis:132px}}
-.mgrs{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:20px}
+.mgrs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;width:min(100%,1080px);margin:20px auto 0}
 .mgr{margin:0;text-align:center;scroll-margin-top:110px}
+.mgr.president{grid-column:1/-1;justify-self:center;width:min(100%,20rem)}
 .arch{position:relative;margin-top:44px;aspect-ratio:1/1.02;border-radius:999px 999px var(--r-l) var(--r-l);background:var(--tone);transition:transform .35s cubic-bezier(.3,1.3,.5,1)}
 .arch::after{content:"";position:absolute;inset:auto 0 0 0;height:6px;border-radius:0 0 var(--r-l) var(--r-l);background:var(--brand)}
 .cut{position:absolute;inset:-44px 0 0 0;overflow:hidden;border-radius:0 0 var(--r-l) var(--r-l)}
@@ -511,7 +512,8 @@ a.info{text-decoration:none;color:inherit;transition:transform .2s ease-out}
 .stf b{display:block;font:700 1.02rem var(--display)}
 .stf span{display:block;font-size:.86rem;color:var(--ink-soft)}
 .stf .tag{display:inline-block;margin-top:8px;font:700 .74rem var(--text);padding:4px 10px;border-radius:999px;background:var(--tone);color:var(--brand-deep)}
-@media (max-width:900px){.mgrs{grid-template-columns:repeat(2,1fr)}.stfs{grid-template-columns:repeat(3,1fr)}.tree{display:none}}
+@media (max-width:900px){.mgrs{grid-template-columns:repeat(2,minmax(0,1fr))}.stfs{grid-template-columns:repeat(3,1fr)}.tree{display:none}}
+@media (max-width:520px){.mgr.president{width:min(100%,16rem)}}
 @media (max-width:520px){.stfs{grid-template-columns:repeat(2,1fr)}}
 
 /* barre du haut : une couleur attitrée par rubrique */
@@ -803,7 +805,7 @@ footer b{color:var(--on-brand)}
       <img src="assets/boutique/rayons.webp" srcset="assets/boutique/rayons-mobile.webp 800w, assets/boutique/rayons.webp 1400w" sizes="(max-width: 860px) calc(100vw - 28px), 54vw" fetchpriority="high" width="1400" height="788" alt="Rayons de la boutique Loc’Home : étagères en bois garnies d’appareils classés par catégorie">
       <div class="slip" aria-hidden="true">
         <div class="slip-head"><span>FICHE D’EMPRUNT</span><span>N°&nbsp;0427</span></div>
-        <div class="slip-row"><span>Appareil à raclette</span><b>5&nbsp;€ / jour</b></div>
+        <div class="slip-row" id="slip-example"><span>Appareil à raclette</span><b></b></div>
         <div class="slip-row"><span>Retrait en magasin</span><b>Gratuit</b></div>
         <span class="slip-stamp">À REPARTAGER</span>
       </div>
@@ -938,10 +940,10 @@ footer b{color:var(--on-brand)}
 <section class="page" data-page="equipe" aria-labelledby="t-team" hidden>
   <div class="wrap">
     <h2 id="t-team">L’équipe</h2>
-    <p class="lead">Quatre responsables et cinq salariés font tourner la bibliothèque des objets. Touchez un visage pour retrouver sa fiche.</p>
+    <p class="lead">La présidente, les trois autres responsables de pôle et les cinq salariés font tourner la bibliothèque des objets. Touchez un visage pour retrouver sa fiche.</p>
     <div class="lineup" id="lineup" aria-label="Toute l’équipe Loc’Home"></div>
     <div class="facts" id="facts"></div>
-    <p class="subhead">Les responsables de pôle</p>
+    <p class="subhead">La présidence et les responsables de pôle</p>
     <div class="mgrs" id="team"></div>
     <div class="tree" aria-hidden="true"></div>
     <div class="staff-head"><p class="subhead">En boutique et à l’atelier</p><div class="chips" id="stafff" role="group" aria-label="Filtrer par contrat" style="margin:0"></div></div>
@@ -1012,9 +1014,9 @@ footer b{color:var(--on-brand)}
 <script>
 const CATALOGUE = [
   ["Cuisine", [["Bouilloire",2],["Grille-pain",2],["Balance de cuisine",2],["Mixeur",3],["Air fryer",4],["Micro-ondes",5],["Robot de cuisine multifonction (non cuiseur)",8]]],
-  ["Repas conviviaux", [["Appareil à fondue",4],["Crêpière familiale",4],["Gaufrier",4],["Appareil à raclette",5],["Plancha électrique",8],["Barbecue électrique de table",8]]],
-  ["Nettoyage", [["Aspirateur",5],["Nettoyeur vapeur",6],["Nettoyeur moquette",9],["Shampouineuse compacte",15],["Nettoyeur haute pression",15]]],
-  ["Vêtements et couture", [["Fer à repasser",3],["Machine à coudre",8]]],
+  ["Repas conviviaux", [["Appareil à fondue",3],["Crêpière familiale",4],["Gaufrier",4],["Appareil à raclette",3],["Plancha électrique",8],["Barbecue électrique de table",8]]],
+  ["Nettoyage", [["Aspirateur",4],["Nettoyeur vapeur",6],["Nettoyeur moquette",9],["Shampouineuse compacte",15],["Nettoyeur haute pression",15]]],
+  ["Vêtements et couture", [["Fer à repasser",3],["Machine à coudre",5]]],
   ["Bricolage", [["Perceuse-visseuse",5],["Ponceuse",6]]],
   ["Jardinage", [["Tondeuse électrique pour petit jardin",15],["Débroussailleuse portative",15]]],
   ["Loisirs et confort", [["Ventilateur",3],["Vidéoprojecteur domestique",15]]]
@@ -1024,7 +1026,12 @@ const PLANS = [
   {id:"confort",    n:"Confort",    std:19.9, stu:12.9, e:5,  d:7,  f:["Réservation prioritaire"]},
   {id:"premium",    n:"Premium",    std:34.9, stu:22.9, e:10, d:10, f:["Tout le catalogue","1 livraison locale par mois"]}
 ];
-const TEAM = [["Fleurine Plault","Responsable commerciale","assets/equipe/commercial.webp","Commercial"],["Daphné Gamboa","Responsable ressources humaines","assets/equipe/ressources-humaines.webp","Ressources humaines"],["Noémie Lebaillif","Responsable gestion et finance","assets/equipe/gestion-finance.webp","Gestion et finance"],["Léonie Garnier","Responsable communication","assets/equipe/communication.webp","Communication"]];
+const TEAM = [
+  ["Noémie Lebaillif","Présidente et responsable de la gestion et des finances","assets/equipe/gestion-finance.webp","Gestion et finances",true],
+  ["Fleurine Plault","Responsable commerciale","assets/equipe/commercial.webp","Commercial"],
+  ["Daphné Gamboa","Responsable ressources humaines","assets/equipe/ressources-humaines.webp","Ressources humaines"],
+  ["Léonie Garnier","Responsable communication","assets/equipe/communication.webp","Communication"]
+];
 const STAFF = [["Camille Durandet","Temps partiel","assets/equipe/camille.webp","Job étudiant","assets/equipe/camille-avatar.webp"],["Joël Martin","Temps plein, 35 h","assets/equipe/joel.webp","CDI","assets/equipe/joel-avatar.webp"],["Paul Dubier","Temps plein, 35 h","assets/equipe/paul.webp","CDI","assets/equipe/paul-avatar.webp"],["Lucas Manceau","Temps partiel","assets/equipe/lucas.webp","Job étudiant","assets/equipe/lucas-avatar.webp"],["Tatiana Guirec","Temps partiel","assets/equipe/tatiana.webp","Job étudiant","assets/equipe/tatiana-avatar.webp"]];
 
 const $ = s => document.querySelector(s);
@@ -1169,10 +1176,10 @@ $("#std").onclick=()=>{location.hash="abonnements";};
 $("#stu").onclick=()=>{location.hash="abonnements?tarif=etudiant";};
 
 /* Équipe */
-const TONES=["var(--sage)","var(--peach)","var(--butter)","var(--sky)"], TONES2=["var(--lilac)","var(--rose)","var(--sky)","var(--butter)","var(--sage)"];
+const TONES=["var(--butter)","var(--sage)","var(--peach)","var(--sky)"], TONES2=["var(--lilac)","var(--rose)","var(--sky)","var(--butter)","var(--sage)"];
 const slug=n=>"p-"+n.toLowerCase().normalize("NFD").replace(/[^a-z]+/g,"-");
 function people(){
-  TEAM.forEach(([n,r,src,tag],i)=>{const f=el("figure",{className:"mgr",id:slug(n)},
+  TEAM.forEach(([n,r,src,tag,president],i)=>{const f=el("figure",{className:president?"mgr president":"mgr",id:slug(n)},
     el("div",{className:"arch"},el("div",{className:"cut"},el("img",{src,alt:"Portrait de "+n,width:300,height:360,loading:"lazy"}))),
     el("figcaption",{},el("b",{textContent:n}),el("span",{textContent:r}),el("span",{className:"tag",textContent:"Pôle "+tag.toLowerCase()})));
     f.style.setProperty("--tone",TONES[i]); $("#team").append(f);});
@@ -1400,6 +1407,10 @@ if(!calm&&matchMedia("(hover:hover)").matches){const zn=$("#phonezone");
 
 /* Accueil : bandeau, mosaïque, compteur */
 const flat=CATALOGUE.flatMap(c=>c[1]);
+const slipExample=$("#slip-example");
+const slipRental=flat.find(([name])=>name===slipExample.querySelector("span").textContent);
+if(slipRental) slipExample.querySelector("b").textContent=eur(slipRental[1])+" / jour";
+else slipExample.hidden=true;
 [false,true].forEach(dup=>{const ul=el("ul");if(dup)ul.setAttribute("aria-hidden","true");
   flat.forEach(([n,p])=>ul.append(el("li",{},n+" ",el("b",{textContent:eur(p)}))));$("#ticker").append(ul);});
 TEAM.forEach(([,,src])=>$("#stack").append(el("img",{src,alt:"",width:52,height:52,loading:"lazy"})));
